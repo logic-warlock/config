@@ -1,0 +1,23 @@
+{
+  "name": "@logic-warlock/config",
+  "version": "1.0.0",
+  "description": "Configuration for applying elsint rules and git commits to a JavaScript project.",
+  "bin": {
+    "setup": "./bin/setup.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/logic-warlock/config.git"
+  },
+  "author": "Kaemon Lovendahl <kaemonlovendahl@outlook.com>",
+  "bugs": {
+    "url": "https://github.com/logic-warlock/config/issues"
+  },
+  "homepage": "https://github.com/logic-warlock/config#readme",
+  "dependencies": {
+    "@logic-warlock/eslint-config": "^1.0.0",
+    "@logic-warlock/eslint-config-react": "^1.0.0",
+    "@logic-warlock/eslint-config-typescript": "^1.0.0",
+    "commitizen": "^4.2.1"
+  }
+}
