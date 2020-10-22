@@ -1,0 +1,12 @@
+{
+  "root": true,
+  "extends": [
+    "@logic-warlock",
+    "@logic-warlock/react",
+    "@logic-warlock/typescript"
+  ],
+  "env": {
+    "browser": true,
+    "node": true
+  }
+}

@@ -16,7 +16,7 @@ const yargs = require('yargs')
 const spawn = require('cross-spawn')
 
 yargs
-  .command('<script>', 'Run a db scripts command', (yargs) => {
+  .command('<script>', 'Run a logic-warlock scripts command', (yargs) => {
     yargs.positional('script', {
       describe: 'Name of script to run',
       type: 'string',
@@ -27,7 +27,7 @@ yargs
 const argv = yargs.argv
 const argsList = argv._
 
-const validScripts = ['setup']
+const validScripts = ['cli']
 
 const scriptIndex = argsList.findIndex((arg) => validScripts.includes(arg))
 
@@ -36,10 +36,7 @@ const nodeArgs = scriptIndex > 0 ? argsList.slice(0, scriptIndex) : []
 
 if (!script) {
   console.log(
-    [
-      'Unknown script provided.',
-      'Valid script are: ' + validScripts.join(', '),
-    ].join('\n'),
+    ['Unknown script provided.', 'Valid script are: ' + validScripts.join(', ')].join('\n'),
   )
 
   return
@@ -49,9 +46,7 @@ console.log('RUNNING SCRIPT _______', script, argsList)
 
 const result = spawn.sync(
   'node',
-  nodeArgs
-    .concat(require.resolve('../scripts/' + script))
-    .concat(argsList.slice(scriptIndex + 1)),
+  nodeArgs.concat(require.resolve('../scripts/' + script)).concat(argsList.slice(scriptIndex + 1)),
   { stdio: 'inherit' },
 )
 
@@ -77,5 +72,3 @@ if (result.signal) {
 }
 
 process.exit(result.status)
-
-console.log('HELLO WORLD', args)

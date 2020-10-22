@@ -18,6 +18,9 @@
     "@logic-warlock/eslint-config": "^1.0.0",
     "@logic-warlock/eslint-config-react": "^1.0.0",
     "@logic-warlock/eslint-config-typescript": "^1.0.0",
-    "commitizen": "^4.2.1"
+    "chalk": "^4.1.0",
+    "commitizen": "^4.2.1",
+    "figlet": "^1.5.0",
+    "prompts": "^2.3.2"
   }
 }
