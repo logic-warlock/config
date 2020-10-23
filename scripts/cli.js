@@ -47,11 +47,11 @@ const mainMenu = async (message = '') => {
 
   switch (response.action) {
     case 'setupEnvironment': {
-      const environmentProcess = childProcess.fork('./scripts/setupEnvironment.js')
+      const environmentProcess = childProcess.fork('./setupEnvironment.js')
 
       // This will restart the main menu when we finish building the package
       environmentProcess.on('exit', () => {
-        mainMenu()
+        // mainMenu()
       })
 
       break
