@@ -1,28 +1,8 @@
-const commands = [
-  // '[ ! -f .huskyrc.js ] && touch .huskyrc.js && echo \'module.exports = require("@logic-warlock/scripts/husky")\' >> .huskyrc.js',
-  // '[ ! -f .lintstagedrc.js ] && touch .lintstagedrc.js && echo \'module.exports = require("@logic-warlock/scripts/lintstaged")\' >> .lintstagedrc.js',
-  // '[ ! -f .eslintrc ] && touch .eslintrc && echo \'{\n  "extends": ["@logic-warlock"],\n  "plugins": ["prettier"],\n  "rules": {\n    "prettier/prettier": "error"\n  }\n}\' >> .eslintrc',
-  // '[ ! -f .prettierrc.js ] && touch .prettierrc.js && echo \'module.exports = require("@logic-warlock/scripts/prettier")\' >> .prettierrc.js',
-  // `[ ! -f .czrc ] && touch .czrc && echo '${commitizen}' >> .czrc`,
-]
-
-console.log('Setup is complete!')
-
 /* eslint-disable @typescript-eslint/no-var-requires, no-console */
-const prompts = require('prompts')
-const childProcess = require('child_process')
-const chalk = require('chalk')
 const fs = require('fs')
-const path = require('path')
+const chalk = require('chalk')
+const prompts = require('prompts')
 
-//Configuration Files
-const prettier = require('./prettier.json')
-const husky = require('./husky.json')
-const lintStaged = require('./lintstaged.json')
-const commitizen = require('./commitizen.json')
-
-// List of configurations.
-const configurations = ['Prettier', 'Husky', 'Lint-Staged', 'Commitizen']
 const eslintOptions = ['@logic-warlock', '@logic-warlock/react', '@logic-warlock/typescript']
 
 /**
@@ -37,7 +17,7 @@ const print = (...contents) => console.log(chalk.bgKeyword('rebeccapurple').whit
 /**
  * Asks the dev a series of questions and then generates a new package based on it.
  */
-const createPackage = async () => {
+const createEslintConfig = async () => {
   console.clear()
   print(chalk.bold("Alright, my dude, let's hook you up with a brand new package."))
   let cancelledByUser = false
@@ -47,14 +27,8 @@ const createPackage = async () => {
       {
         type: 'multiselect',
         name: 'eslint',
-        message: 'What linting do you want applied?',
+        message: 'What linting do you want?',
         choices: eslintOptions.map((option) => ({ title: option, value: option })),
-      },
-      {
-        type: 'multiselect',
-        name: 'configs',
-        message: 'What configurations do you want applied?',
-        choices: configurations.map((config) => ({ title: config, value: config })),
       },
     ].filter(Boolean),
     {
@@ -75,7 +49,7 @@ const createPackage = async () => {
 
     if (response.eslint && response.eslint.length) {
       print(`Awesome! ${chalk.bold('Linting')}. I love linting, I got you.`)
-      const eslintConfigPath = `${__dirname}/.eslintrc`
+      const eslintConfigPath = `./.eslintrc`
 
       // Creates a .eslintrc file if one cannot be found
       if (!fs.existsSync(eslintConfigPath)) {
@@ -134,22 +108,11 @@ const createPackage = async () => {
       print(chalk.bold('Eslint has been setup! Congrats!'))
     }
 
-    if (response.configs && response.configs.length) {
-      print(`Sweet, dude. ${chalk.bold('Dependencies')}. I love dependencies. I got you.`)
-      response.dependencies.forEach((dependency) => {
-        childProcess.execSync(
-          `lerna add @deseretbook/${dependency} --no-bootstrap --scope=@deseretbook/${response.name}`,
-        )
-      })
-    }
-
-    print('Making sure all the packages are going to play nice together.')
-    childProcess.execSync(`lerna bootstrap`)
   } catch (error) {
-    print(chalk.bgRed.white('Well wtf.', error))
+    print(chalk.bgRed.white("Well something wasn't used right...", error))
   }
 }
 
 ;(() => {
-  createPackage()
+  createEslintConfig()
 })()

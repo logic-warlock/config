@@ -20,7 +20,9 @@
     "@logic-warlock/eslint-config-typescript": "^1.0.0",
     "chalk": "^4.1.0",
     "commitizen": "^4.2.1",
+    "cross-spawn": "^7.0.3",
     "figlet": "^1.5.0",
-    "prompts": "^2.3.2"
+    "prompts": "^2.3.2",
+    "yargs": "^16.1.0"
   }
 }

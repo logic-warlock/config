@@ -1,1 +1,0 @@
-{"extends":["@logic-warlock","@logic-warlock/react","@logic-warlock/typescript"],"env":{"browser":true,"node":true},"parser":"@typescript-eslint/parser","parserOptions":{"project":"ADD YOUR TSCONFIG PATH HERE"}}

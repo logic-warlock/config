@@ -27,7 +27,7 @@ yargs
 const argv = yargs.argv
 const argsList = argv._
 
-const validScripts = ['cli']
+const validScripts = ['config']
 
 const scriptIndex = argsList.findIndex((arg) => validScripts.includes(arg))
 

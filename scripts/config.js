@@ -4,6 +4,9 @@ const figlet = require('figlet')
 const chalk = require('chalk')
 const childProcess = require('child_process')
 
+const setupEnvironment = require('./setupEnvironment')
+const setupEslint = require('./setupEslint')
+
 /**
  * Prints contents with purple background
  *
@@ -42,16 +45,27 @@ const mainMenu = async (message = '') => {
     type: 'select',
     name: 'action',
     message: [message, 'What would you like to do?'].filter(Boolean).join('\n'),
-    choices: [{ title: 'Setup Environment', value: 'setupEnvironment' }],
+    choices: [{ title: 'Setup Environment', value: 'setupEnvironment' }, { title: 'Setup Eslint', value: 'setupEslint' }],
   })
 
   switch (response.action) {
     case 'setupEnvironment': {
-      const environmentProcess = childProcess.fork('./setupEnvironment.js')
+      const environmentProcess = childProcess.fork(setupEnvironment)
 
       // This will restart the main menu when we finish building the package
       environmentProcess.on('exit', () => {
-        // mainMenu()
+        mainMenu()
+      })
+
+      break
+    }
+
+    case 'setupEslint': {
+      const eslintProcess = childProcess.fork(setupEslint)
+
+      // This will restart the main menu when we finish building the package
+      eslintProcess.on('exit', () => {
+        mainMenu()
       })
 
       break
