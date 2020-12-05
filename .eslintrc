@@ -2,8 +2,7 @@
   "root": true,
   "extends": [
     "@logic-warlock",
-    "@logic-warlock/react",
-    "@logic-warlock/typescript"
+    "@logic-warlock/react"
   ],
   "env": {
     "browser": true,
