@@ -32,7 +32,7 @@ Now you just need to extend these packages from within a `.eslintrc` file.
 
 ```
 {
-  extends: ["@logic-warlock", "@logic-warlock/react", "@logic-warlock/typescript"]
+  "extends": ["@logic-warlock", "@logic-warlock/react", "@logic-warlock/typescript"]
 }
 ```
 
@@ -40,7 +40,7 @@ If you are using `@logic-warlock/eslint-config-typescript` then you will also ne
 
 ```
 {
-  parser: "@typescript-eslint/parser"
+  "parser": "@typescript-eslint/parser"
 }
 ```
 
@@ -48,10 +48,10 @@ You will also need to specify a `parserOptions` parameter that has a nested `pro
 
 ```
 {
-  extends: ["@logic-warlock", "@logic-warlock/react", "@logic-warlock/typescript"],
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    project: './tsconfig'
+  "extends": ["@logic-warlock", "@logic-warlock/react", "@logic-warlock/typescript"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": './tsconfig'
   }
 }
 ```
