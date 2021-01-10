@@ -1,6 +1,6 @@
 {
   "name": "@logic-warlock/config",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Configuration for applying elsint rules and git commits to a JavaScript project.",
   "bin": {
     "setup": "./bin/setup.js"
