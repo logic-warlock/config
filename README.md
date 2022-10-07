@@ -121,3 +121,5 @@ Add the following to your `commitizen.json` file. This path just specifies, well
  "path": "cz-conventional-changelog"
 }
 ```
+
+Some cool minor change
